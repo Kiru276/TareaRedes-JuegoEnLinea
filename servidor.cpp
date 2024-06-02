@@ -94,7 +94,7 @@ public:
     void manejarCliente(int socketCliente, Tablero tablero) {
         char buffer[1024];
         int contadorMovimientos = 0;
-        const int maxMovimientos = 21;  // Máximo de movimientos permitidos
+        const int maxMovimientos = 21;  // Máximo de movimientos permitidos (21 puestos para comprobar empate, pueden modificarse)
         bool turnoJugador = std::rand() % 2 == 0;  // Turno inicial aleatorio
 
         while (true) {
@@ -154,10 +154,10 @@ public:
 
             // Si se ha alcanzado el número máximo de movimientos
             if (contadorMovimientos >= maxMovimientos) {
-                std::string mensajeEmpate = "Es un empate :P!"; // Mensaje de empate
+                std::string mensajeEmpate = "Es un empate :P! Maximo de movimientos alcanzados"; // Mensaje de empate
                 send(socketCliente, mensajeEmpate.c_str(), mensajeEmpate.size(), 0); // Enviar mensaje
                 enviarEstadoTablero(socketCliente, tablero);  // Enviar tablero final
-                std::cout << "Es un empate :P!" << std::endl; 
+                std::cout << "Es un empate :P! Maximo de movimientos alcanzados" << std::endl; 
                 close(socketCliente);  // Cierra conexión
                 socketsClientes.erase(std::remove(socketsClientes.begin(), socketsClientes.end(), socketCliente), socketsClientes.end()); // Eliminar cliente
                 break;

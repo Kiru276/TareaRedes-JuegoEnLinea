@@ -45,7 +45,7 @@ bool recibirEstadoTablero(int clientSocket, char buffer[], int bufferSize) {
     if (bytesReceived > 0) {
         std::cout << buffer << std::endl;
         // Verificar si el juego ha terminado
-        if (strstr(buffer, "Ganaste!!") != nullptr || strstr(buffer, "El servidor ganó :(") != nullptr || strstr(buffer, "Es un empate :P!") != nullptr) {
+        if (strstr(buffer, "Ganaste!!") != nullptr || strstr(buffer, "El servidor ganó :(") != nullptr || strstr(buffer, "Es un empate :P! ") != nullptr) {
             return true;  // Si es, el juego ha terminado
         }
     } else {
